@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Personagens - Dragon Ball Wiki</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Personagens</h1>
+
+        <div th:if="${session.loggedUser}">
+            <p>Bem-vindo, <span th:text="${session.loggedUser.username}">Usuário</span>!</p>
+            <a th:href="@{/}">Página inicial</a> |
+            <a th:href="@{/auth/logout}">Logout</a>
+        </div>
+
+        <hr>
+
+        <ul>
+            <li th:each="personagem : ${personagens}">
+                <a th:href="@{/wiki/personagem/{id}(id=${personagem.id})}" 
+                   th:text="${personagem.nome}">Nome do Personagem</a>
+            </li>
+        </ul>
+
+        <div th:if="${session.loggedUser != null and session.loggedUser.role == 'ADMIN'}">
+            <hr>
+            <a th:href="@{/wiki/add-personagem}">Adicionar Personagem</a>
+        </div>
+    </div>
+</body>
+</html>

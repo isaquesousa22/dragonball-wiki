@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Personagem - Dragon Ball Wiki</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Adicionar Personagem</h1>
+
+   
+    <form th:action="@{/wiki/personagens/add}" method="post">
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="raca">Raça:</label>
+        <input type="text" id="raca" name="raca" required>
+
+        <label for="imagemUrl">URL da Imagem:</label>
+        <input type="text" id="imagemUrl" name="imagemUrl">
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" rows="5" required></textarea>
+
+        <br><br>
+        <button type="submit">Salvar</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/wiki/personagens}">Voltar à lista de personagens</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${personagem.nome} + ' - Dragon Ball Wiki'">Personagem</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${personagem.nome}">Nome do Personagem</h1>
+
+        <div th:if="${personagem.imagemUrl}">
+            <img th:src="${personagem.imagemUrl}" alt="Imagem do Personagem" style="max-width: 100%;">
+        </div>
+
+        <p><strong>Raça:</strong> <span th:text="${personagem.raca}">Raça do personagem</span></p>
+        <p><strong>Descrição:</strong></p>
+        <p th:text="${personagem.descricao}">Descrição completa do personagem</p>
+
+        <hr>
+        <a th:href="@{/wiki/personagens}">Voltar à lista de personagens</a>
+    </div>
+</body>
+</html>
