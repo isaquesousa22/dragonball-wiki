@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dragon Ball Wiki</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Dragon Ball Wiki</h1>
+
+        <div th:if="${session.loggedUser}">
+            <p>Bem-vindo, <span th:text="${session.loggedUser.username}">Usuário</span>!</p>
+            <p>Role: <span th:text="${session.loggedUser.role}">USER</span></p>
+            <a th:href="@{/auth/logout}">Logout</a>
+        </div>
+        <div th:if="${session.loggedUser == null}">
+            <p><a th:href="@{/auth/login}">Login</a> ou <a th:href="@{/auth/register}">Registrar</a></p>
+        </div>
+
+        <hr>
+
+        <h2>Wiki</h2>
+        <ul>
+            <li><a th:href="@{/wiki/personagens}">Personagens</a></li>
+            <li><a th:href="@{/wiki/sagas}">Sagas</a></li>
+            <li><a th:href="@{/wiki/tecnicas}">Técnicas</a></li>
+        </ul>
+
+        <div th:if="${session.loggedUser != null and session.loggedUser.role == 'ADMIN'}">
+            <hr>
+            <h3>Admin</h3>
+            <ul>
+                <li><a th:href="@{/admin/add-personagem}">Adicionar Personagem</a></li>
+                <li><a th:href="@{/admin/add-saga}">Adicionar Saga</a></li>
+                <li><a th:href="@{/admin/add-tecnica}">Adicionar Técnica</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
