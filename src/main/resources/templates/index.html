@@ -4,18 +4,53 @@
     <meta charset="UTF-8">
     <title>Dragon Ball Wiki</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container h1 {
+            text-align: center;
+            color: #ff5722;
+        }
+        .welcome {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .welcome p {
+            font-size: 1.2em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        ul li a {
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>🔥 Dragon Ball Wiki</h1>
 
-        <div th:if="${session.loggedUser}">
-            <p>Bem-vindo, <span th:text="${session.loggedUser.username}">Usuário</span>!</p>
-            <p>Role: <span th:text="${session.loggedUser.role}">USER</span></p>
-            <a th:href="@{/auth/logout}">Logout</a>
-        </div>
-        <div th:if="${session.loggedUser == null}">
-            <p><a th:href="@{/auth/login}">Login</a> ou <a th:href="@{/auth/register}">Registrar</a></p>
+        <div class="welcome">
+            <div th:if="${session.loggedUser}">
+                <p>Bem-vindo, <span th:text="${session.loggedUser.username}">Usuário</span>!</p>
+                <p>Role: <span th:text="${session.loggedUser.role}">USER</span></p>
+                <a th:href="@{/auth/logout}">Logout</a>
+            </div>
+            <div th:if="${session.loggedUser == null}">
+                <p><a th:href="@{/auth/login}">Login</a> ou <a th:href="@{/auth/register}">Registrar</a></p>
+            </div>
         </div>
 
         <hr>

@@ -29,7 +29,7 @@ public class WikiController {
         return "personagens"; // personagens.html
     }
 
-    // Detalhes de um personagem
+  
     @GetMapping("/personagem/{id}")
     public String personagemDetalhes(@PathVariable Long id, Model model) {
         Personagem personagem = personagemService.getPersonagemById(id).orElse(null);
@@ -40,7 +40,13 @@ public class WikiController {
         return "personagem-detalhes"; 
     }
 
-    
+    @GetMapping("/search")
+    public String searchPersonagens(@RequestParam String nome, Model model) {
+        List<Personagem> personagens = personagemService.searchPersonagensByName(nome);
+        model.addAttribute("personagens", personagens);
+        return "personagens"; // personagens.html
+    }
+
     @GetMapping("/add-personagem")
     public String addPersonagemPage(HttpSession session, Model model) {
         if (session.getAttribute("loggedUser") == null || 

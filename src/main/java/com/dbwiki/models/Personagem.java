@@ -20,7 +20,9 @@ public class Personagem {
 
     private String imagemUrl;
 
-    // Construtores
+    private Integer powerLevel;
+
+    
     public Personagem() {}
 
     public Personagem(String nome, String raca, String descricao, String imagemUrl) {
@@ -30,7 +32,7 @@ public class Personagem {
         this.imagemUrl = imagemUrl;
     }
 
-    // Getters e Setters
+    
     public Long getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class Personagem {
 
     public void setImagemUrl(String imagemUrl) {
         this.imagemUrl = imagemUrl;
+    }
+
+    public Integer getPowerLevel() {
+        return powerLevel;
+    }
+
+    public void setPowerLevel(Integer powerLevel) {
+        this.powerLevel = powerLevel;
     }
 }

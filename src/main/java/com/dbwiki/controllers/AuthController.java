@@ -19,13 +19,12 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // Página de login
     @GetMapping("/login")
     public String loginPage() {
-        return "login"; // login.html ou login.jsp
+        return "login"; 
     }
 
-    // Processa login
+  
     @PostMapping("/login")
     public String login(@RequestParam String username,
                         @RequestParam String password,
@@ -52,10 +51,16 @@ public class AuthController {
     @PostMapping("/register")
     public String register(@RequestParam String username,
                            @RequestParam String password,
+                           @RequestParam String email,
                            Model model) {
 
+        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+            model.addAttribute("error", "E-mail inválido.");
+            return "register";
+        }
+
         try {
-            userService.registerUser(username, password, "USER");
+            userService.registerUser(username, password, email, "USER");
             model.addAttribute("success", "Usuário registrado com sucesso! Faça login.");
             return "login";
         } catch (Exception e) {
